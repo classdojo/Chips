@@ -50,23 +50,25 @@ public class MainFragment extends Fragment {
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		menu.clear();
 		inflater.inflate(R.menu.menu_main, menu);
-		menu.findItem(R.id.action_use_list).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-			@Override
-			public boolean onMenuItemClick(MenuItem item) {
+		super.onCreateOptionsMenu(menu, inflater);
+	}
+
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()) {
+			case R.id.action_use_list:
 				new Preferences(getActivity()).setUseList(true);
 				setListView();
 				return true;
-			}
-		});
-		menu.findItem(R.id.action_use_popup).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-			@Override
-			public boolean onMenuItemClick(MenuItem item) {
+			case R.id.action_use_popup:
 				new Preferences(getActivity()).setUseList(false);
 				setListView();
 				return true;
-			}
-		});
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 
