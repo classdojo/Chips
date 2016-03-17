@@ -51,6 +51,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.ActionMode;
 import android.view.ActionMode.Callback;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -141,7 +142,6 @@ public class CustomRecipientEditTextView extends MultiAutoCompleteTextView imple
 	//    private int mStartTouchY = -1;
 	//    private boolean mIsScrolling = false;
 	private ListView mListView;
-	private int mDropDownHeight;
 
 
 	private static float getTextYOffset(final String text, final TextPaint paint, final int height) {
@@ -172,8 +172,8 @@ public class CustomRecipientEditTextView extends MultiAutoCompleteTextView imple
 		setChipDimensions(context, attrs);
 		if(sSelectedTextColor == -1)
 			sSelectedTextColor = context.getResources().getColor(android.R.color.white);
+		setGravity(Gravity.CENTER_VERTICAL);
 		mAddressPopup = new ListPopupWindow(context);
-		mDropDownHeight = getDropDownHeight();
 		setInputType(getInputType() | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
 		setOnItemClickListener(null);
 		setOnFocusChangeListener(null);
@@ -198,12 +198,9 @@ public class CustomRecipientEditTextView extends MultiAutoCompleteTextView imple
 
 	public void setListView(ListView listView) {
 		mListView = listView;
-		if(listView != null) {
-			mListView.setOnItemClickListener(getOnItemClickListener());
-			setDropDownHeight(0);
-		} else {
-			setDropDownHeight(mDropDownHeight);
-		}
+		mListView.setOnItemClickListener(getOnItemClickListener());
+		int mDropDownHeight = getDropDownHeight();
+		setDropDownHeight(0);
 	}
 
 
@@ -715,6 +712,7 @@ public class CustomRecipientEditTextView extends MultiAutoCompleteTextView imple
 
 	@Override
 	protected void onAttachedToWindow() {
+		super.onAttachedToWindow();
 		mAttachedToWindow = true;
 	}
 

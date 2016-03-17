@@ -37,8 +37,8 @@ public class ChipsUtil {
 		int width = dstBmp.getWidth();
 		int height = dstBmp.getHeight();
 		int diameter = width > height ? width : height;
-		int intrinsicWidth = (int) Math.min(width, diameter);
-		int intrinsicHeight = (int) Math.min(height, diameter);
+		int intrinsicWidth = Math.min(width, diameter);
+		int intrinsicHeight = Math.min(height, diameter);
 
 		Bitmap output = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
 

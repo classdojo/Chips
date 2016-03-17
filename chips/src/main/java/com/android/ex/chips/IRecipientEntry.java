@@ -1,15 +1,12 @@
 package com.android.ex.chips;
 
-import android.support.annotation.NonNull;
-
-
 /**
  * Created by Roman on 4/12/2015.
  */
 public interface IRecipientEntry {
-	@NonNull String getDisplayName();
+	String getDisplayName();
 
-	@NonNull String getDestination();
+	String getDestination();
 
 	boolean drawPhotos();
 
